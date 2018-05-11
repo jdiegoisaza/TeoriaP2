@@ -19,6 +19,7 @@ public class Practica2 {
     public static void main(String[] args) {
         // TODO code application logic here
         int n=0;
+        String vector[]= new String[10];
         
         String s="1. A = aC\n" +
                  "2. A = bBc\n" +
@@ -27,19 +28,16 @@ public class Practica2 {
                  "5. C = aCa\n" +
                  "6. C = bBcc\n" +
                  "7. C = |";
-        
-        StringTokenizer st = new StringTokenizer(s, "\n");
-        while (st.hasMoreTokens()) {
-            System.out.println(st.nextToken().charAt(3));
-            
-        }
+        reconocer reco = new reconocer();
+        reco.obtenerNT(s,vector);
+        mostar(vector);
         
     }
-    public void reconocedor (String s){
-            
-        StringTokenizer st = new StringTokenizer("this is a test");
-        while (st.hasMoreTokens()) {
-            System.out.println(st.nextToken());
+
+    
+    public static void mostar(String[] v) {
+        for (int i = 0; i < v.length; i++) {
+            if (v[i]!= null)System.out.println(v[i]);
         }
     }
     
