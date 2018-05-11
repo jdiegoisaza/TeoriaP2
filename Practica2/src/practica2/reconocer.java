@@ -15,10 +15,12 @@ public class reconocer {
       public void obtenerNT (String s, String[] vector){
             
         StringTokenizer st = new StringTokenizer(s,"\n");
-        int i=0;
+        int i=0,j=0;
         while (st.hasMoreTokens()) {
+            while(j<i){
             if (true) {
                 vector[i]= (Character.toString(st.nextToken().charAt(3))) ;
+            }
             }
 
             i++;
