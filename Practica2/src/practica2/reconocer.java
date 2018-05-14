@@ -5,6 +5,9 @@
  */
 package practica2;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 
@@ -12,18 +15,26 @@ public class reconocer {
     
     
     
-      public void obtenerNT (String s, String[] vector){
+      public void obtenerNT (String s, ArrayList<String> vector, ArrayList<String> vectorPodu){
             
         StringTokenizer st = new StringTokenizer(s,"\n");
-        int i=0,j=0;
+        int i=0;
         while (st.hasMoreTokens()) {
-            while(j<i){
-            if (true) {
-                vector[i]= (Character.toString(st.nextToken().charAt(3))) ;
-            }
-            }
-
+            String p = st.nextToken();
+            String c =Character.toString(p.charAt(3));
+                        vector.add(c);
+                        vectorPodu.add(p);
             i++;
-        }
+        }        
+        //Vamos a eliminar NT repetidos
+        Set<String> hs = new HashSet<>();
+        hs.addAll(vector);
+        vector.clear();
+        vector.addAll(hs);
+
     }
+      
+      public void anulables (){
+          
+      }
 }

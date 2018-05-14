@@ -5,7 +5,7 @@
  */
 package practica2;
 
-import java.util.StringTokenizer;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,9 +16,12 @@ public class Practica2 {
     /**
      * @param args the command line arguments
      */
+    String VectorNT [] =new String[10];
     public static void main(String[] args) {
         // TODO code application logic here
         int n=0;
+        ArrayList<String> vectorNT = new ArrayList<>();
+        ArrayList<String> vectorProdu = new ArrayList<>();
         String vector[]= new String[10];
         
         String s="1. A = aC\n" +
@@ -29,16 +32,21 @@ public class Practica2 {
                  "6. C = bBcc\n" +
                  "7. C = |";
         reconocer reco = new reconocer();
-        reco.obtenerNT(s,vector);
-        mostar(vector);
+        reco.obtenerNT(s,vectorNT,vectorProdu);
+        mostar2(vectorNT);
+        mostar2(vectorProdu);
         
     }
 
     
     public static void mostar(String[] v) {
         for (int i = 0; i < v.length; i++) {
-            if (v[i]!= null)System.out.println(v[i]);
+            if (v[i]!= "")System.out.println(v[i]);
         }
     }
-    
+    public static void mostar2(ArrayList v) {
+        for (int i = 0; i < v.size(); i++) {
+            System.out.println(v.get(i));
+        }
+    }
 }
