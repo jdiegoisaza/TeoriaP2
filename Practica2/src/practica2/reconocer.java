@@ -34,7 +34,36 @@ public class reconocer {
 
     }
       
-      public void anulables (){
-          
-      }
+    public void anulables (ArrayList<String> vectorNT,ArrayList<String> vectorProdu,ArrayList<String> vectorAnu){
+        int i =0;
+        while (i<vectorNT.size()) {            
+            if(esAnulable(vectorNT.get(i),vectorProdu)){
+                vectorAnu.add(vectorNT.get(i));
+            }            
+            i++;
+        }
+    }
+    
+    public boolean esAnulable(String s,ArrayList<String> vectorProdu){
+        boolean bool = false;
+        int i=0;
+        while (i<vectorProdu.size()) {            
+            if (s.equals(Character.toString(vectorProdu.get(i).charAt(3)))) {
+                if("|".equals(Character.toString(vectorProdu.get(i).charAt(7)))){
+                    return true;
+                }
+                int j=7;
+                while (j<vectorProdu.size()) {                    
+                    if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) {
+                        
+                    }
+                }
+                
+                
+            }
+            i++;
+        }
+        
+        return bool;
+    }
 }
