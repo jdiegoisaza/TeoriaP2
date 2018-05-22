@@ -60,6 +60,7 @@ public class reconocer {
                         break;
                     }
                     j++;
+                    
                 }
                 
                 
