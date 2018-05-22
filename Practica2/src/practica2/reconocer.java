@@ -53,10 +53,13 @@ public class reconocer {
                     return true;
                 }
                 int j=7;
-                while (j<vectorProdu.size()) {                    
+                while (j<vectorProdu.get(i).length()) {                    
                     if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) {
-                        
+                        esAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorProdu);
+                    }else{
+                        break;
                     }
+                    j++;
                 }
                 
                 
