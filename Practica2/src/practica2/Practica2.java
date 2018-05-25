@@ -22,6 +22,7 @@ public class Practica2 {
         int n=0;
         ArrayList<String> vectorNT = new ArrayList<>();
         ArrayList<String> vectorProdu = new ArrayList<>();
+        ArrayList<String> vectorAnu = new ArrayList<>();
         String vector[]= new String[10];
         
         String s="1. A = aC\n" +
@@ -30,12 +31,14 @@ public class Practica2 {
                  "4. B = bB\n" +
                  "5. C = aCa\n" +
                  "6. C = bBcc\n" +
+                 "8. D = bBcc\n" +
                  "7. C = |";
         reconocer reco = new reconocer();
         reco.obtenerNT(s,vectorNT,vectorProdu);
+        reco.anulables (vectorNT,vectorProdu,vectorAnu);
         mostar2(vectorNT);
         mostar2(vectorProdu);
-        
+        mostar2(vectorAnu);
     }
 
     

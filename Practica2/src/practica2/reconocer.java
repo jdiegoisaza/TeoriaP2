@@ -46,25 +46,28 @@ public class reconocer {
     
     public boolean esAnulable(String s,ArrayList<String> vectorProdu){
         boolean bool = false;
-        int i=0;
-        while (i<vectorProdu.size()) {            
-            if (s.equals(Character.toString(vectorProdu.get(i).charAt(3)))) {
-                if("|".equals(Character.toString(vectorProdu.get(i).charAt(7)))){
+        int k=0;
+        while (k<vectorProdu.size()) {            
+            if (s.equals(Character.toString(vectorProdu.get(k).charAt(3)))) {
+                if("|".equals(Character.toString(vectorProdu.get(k).charAt(7)))){
                     return true;
                 }
                 int j=7;
-                while (j<vectorProdu.get(i).length()) {                    
-                    if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) {
-                        esAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorProdu);
+                while (j<vectorProdu.get(k).length()) {                    
+                    if (Character.isUpperCase(vectorProdu.get(k).charAt(j))) {
+                        if(!esAnulable(Character.toString(vectorProdu.get(k).charAt(j)), vectorProdu)){
+                            return false;
+                        }
                     }else{
-                        break;
+                        return false;
                     }
                     j++;
                 }
+                return true;
                 
                 
             }
-            i++;
+            k++;
         }
         
         return bool;
