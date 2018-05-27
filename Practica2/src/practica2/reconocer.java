@@ -151,11 +151,17 @@ public class reconocer {
     }
     
     public void NTprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorNT,ArrayList<String> vectorNTPrime){
-        int i=0;
+        int i=0,j=0;
         while(i<vectorNT.size()){
             vectorNTPrime.add(vectorNT.get(i));
-            concatenaArray(i, vectorNTPrime, primerosNT());
+            concatenaArray(i, vectorNTPrime, primerosNT(vectorNT.get(i),vectorProdu, vectorAnu));
+            i++;
         }
+        while(j<vectorNTPrime.size()){
+            replaceArray(j, vectorNTPrime, vectorNTPrime.get(j).replaceAll("(.)\\1", "$1"));
+            j++;
+        }
+        
     }
     
     public void Pprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorPPrime){
@@ -192,10 +198,51 @@ public class reconocer {
         
     }
     
-    public String primerosNT(){
+    public String primerosNT(String NT,ArrayList<String> vectorProdu,ArrayList<String> vectorAnu){
+        String s="";
+        int i=0;
+        while (i<vectorProdu.size()) { 
+            int j=4;
+            if(!NT.equals(Character.toString(vectorProdu.get(i).charAt(0)))){
+                i++;
+                continue;
+            }
+            if("|".equals(Character.toString(vectorProdu.get(i).charAt(j)))){
+                i++;
+                continue;
+            }
+            while (j<=vectorProdu.get(i).length()){  
+                if (j==vectorProdu.get(i).length()) {
+                    j++;
+                    continue;
+                }
+                if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) { 
+                    if(Character.toString(vectorProdu.get(i).charAt(0)).equals(Character.toString(vectorProdu.get(i).charAt(j)))){
+                        if(NTesAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
+                            j++;
+                            continue;                            
+                        }else{
+                            j++;
+                            break;
+                        }
+                    }
+                    
+                    if(NTesAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
+                        System.out.println("se van a agregar los primeros de "+vectorProdu.get(i).charAt(j));
+                        s=s+primerosNT(Character.toString(vectorProdu.get(i).charAt(j)), vectorProdu, vectorAnu);
+                        j++;
+                        continue;
+                    }
+                    break;
+                }else{
+                    s=s+Character.toString(vectorProdu.get(i).charAt(j));
+                    break;
+                }
+            }
+            i++;
+        }
         
-        
-        return "";
+        return s;
     }
     
     public boolean NTesAnulable(String s,ArrayList<String> vectorAnu){
@@ -224,5 +271,11 @@ public class reconocer {
         String s= vector.get(posicion);
         vector.remove(posicion);
         vector.add(posicion, s+t);
+    }
+    
+    public void replaceArray(int posicion, ArrayList<String> vector,String t){
+        String s= vector.get(posicion);
+        vector.remove(posicion);
+        vector.add(posicion, t);
     }
 }

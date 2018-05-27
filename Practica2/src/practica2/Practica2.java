@@ -24,6 +24,7 @@ public class Practica2 {
         ArrayList<String> vectorProdu = new ArrayList<>();
         ArrayList<String> vectorAnu = new ArrayList<>();
         ArrayList<Integer> vectorPAnu = new ArrayList<>();
+        ArrayList<String> vectorNTPrime = new ArrayList<>();
         String vector[]= new String[10];
         
         String s="A = BC\n" +
@@ -38,12 +39,13 @@ public class Practica2 {
         reco.obtenerNT(s,vectorNT,vectorProdu);
         reco.anulables2 (vectorNT,vectorProdu,vectorAnu);
         reco.pAnulables(vectorProdu, vectorAnu, vectorPAnu);
-        vectorNT.remove(1);
-        vectorNT.add(1, "P");
+        reco.NTprimeros(vectorProdu, vectorAnu, vectorNT, vectorNTPrime);
         mostar2(vectorNT);
         mostar2(vectorProdu);
         mostar2(vectorAnu);
-        mostar2(vectorPAnu);
+        mostar2(vectorPAnu);        
+        mostar2(vectorNTPrime);
+
     }
 
     
