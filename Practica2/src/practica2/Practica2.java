@@ -38,6 +38,8 @@ public class Practica2 {
         reco.obtenerNT(s,vectorNT,vectorProdu);
         reco.anulables2 (vectorNT,vectorProdu,vectorAnu);
         reco.pAnulables(vectorProdu, vectorAnu, vectorPAnu);
+        vectorNT.remove(1);
+        vectorNT.add(1, "P");
         mostar2(vectorNT);
         mostar2(vectorProdu);
         mostar2(vectorAnu);

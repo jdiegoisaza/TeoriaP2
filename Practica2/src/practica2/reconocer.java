@@ -150,6 +150,14 @@ public class reconocer {
         }
     }
     
+    public void NTprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorNT,ArrayList<String> vectorNTPrime){
+        int i=0;
+        while(i<vectorNT.size()){
+            vectorNTPrime.add(vectorNT.get(i));
+            concatenaArray(i, vectorNTPrime, primerosNT());
+        }
+    }
+    
     public void Pprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorPPrime){
         int i=0;
         while (i<vectorProdu.size()) { 
@@ -184,6 +192,12 @@ public class reconocer {
         
     }
     
+    public String primerosNT(){
+        
+        
+        return "";
+    }
+    
     public boolean NTesAnulable(String s,ArrayList<String> vectorAnu){
         int i=0;
         while(i<vectorAnu.size()){
@@ -204,5 +218,11 @@ public class reconocer {
                     k++;
                 }
         return false;
+    }
+    
+    public void concatenaArray(int posicion, ArrayList<String> vector,String t){
+        String s= vector.get(posicion);
+        vector.remove(posicion);
+        vector.add(posicion, s+t);
     }
 }
