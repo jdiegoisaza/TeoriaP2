@@ -50,6 +50,10 @@ public class Practica2 {
             if (v[i]!= "")System.out.println(v[i]);
         }
     }
+    public static String eliminarRepetidos(String v) {
+        v = v.replaceAll("(.)\\1", "$1");
+        return v;
+    }
     public static void mostar2(ArrayList v) {
         for (int i = 0; i < v.size(); i++) {
             System.out.println(v.get(i));

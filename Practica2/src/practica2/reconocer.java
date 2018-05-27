@@ -150,6 +150,51 @@ public class reconocer {
         }
     }
     
+    public void Pprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorPPrime){
+        int i=0;
+        while (i<vectorProdu.size()) { 
+            int j=4;
+            if("|".equals(Character.toString(vectorProdu.get(i).charAt(j)))){
+                i++;
+                continue;
+            }
+            while (j<=vectorProdu.get(i).length()){  
+                if (j==vectorProdu.get(i).length()) {
+                    j++;
+                    continue;
+                }
+                if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) { 
+                    if(Character.toString(vectorProdu.get(i).charAt(0)).equals(Character.toString(vectorProdu.get(i).charAt(j)))){
+                        j++;
+                        continue;
+                    }
+                    if(NTesAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
+                        
+                        j++;
+                        continue;
+                    }
+                    break;
+                }else{
+                    vectorPPrime.add(Character.toString(vectorProdu.get(i).charAt(j)));
+                    break;
+                }
+            }
+            i++;
+        }
+        
+    }
+    
+    public boolean NTesAnulable(String s,ArrayList<String> vectorAnu){
+        int i=0;
+        while(i<vectorAnu.size()){
+            if(s.equals(vectorAnu.get(i))){
+                return true;
+            }
+            i++;                 
+        }
+        return false;
+    }
+    
     public boolean buscaVector(String s, ArrayList<String> vector){
         int k=0;
                 while(k<vector.size()){
