@@ -17,6 +17,7 @@ public class Practica2 {
      * @param args the command line arguments
      */
     String VectorNT [] =new String[10];
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
         // TODO code application logic here
         int n=0;
@@ -25,13 +26,14 @@ public class Practica2 {
         ArrayList<String> vectorAnu = new ArrayList<>();
         ArrayList<Integer> vectorPAnu = new ArrayList<>();
         ArrayList<String> vectorNTPrime = new ArrayList<>();
+        ArrayList<String> vectorPPrime = new ArrayList<>();
         String vector[]= new String[10];
         
         String s="A = BC\n" +
                  "A = bBc\n" +
                  "B = aA\n" +
                  "B = B\n" +
-                 "C = aCa\n" +
+                 "C = Ca\n" +
                  "C = bBcc\n" +
                  "D = bBcc\n" +
                  "C = |";
@@ -40,12 +42,16 @@ public class Practica2 {
         reco.anulables2 (vectorNT,vectorProdu,vectorAnu);
         reco.pAnulables(vectorProdu, vectorAnu, vectorPAnu);
         reco.NTprimeros(vectorProdu, vectorAnu, vectorNT, vectorNTPrime);
+        reco.Pprimeros(vectorProdu, vectorAnu, vectorPPrime, vectorNTPrime);
         mostar2(vectorNT);
         mostar2(vectorProdu);
         mostar2(vectorAnu);
         mostar2(vectorPAnu);        
         mostar2(vectorNTPrime);
-
+        mostar2(vectorPPrime);
+        String t="aba";
+        
+        System.out.println(reco.eliminaRepetido(t));
     }
 
     

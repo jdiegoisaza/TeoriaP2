@@ -157,6 +157,7 @@ public class reconocer {
             concatenaArray(i, vectorNTPrime, primerosNT(vectorNT.get(i),vectorProdu, vectorAnu));
             i++;
         }
+        //Borro T repetidos
         while(j<vectorNTPrime.size()){
             replaceArray(j, vectorNTPrime, vectorNTPrime.get(j).replaceAll("(.)\\1", "$1"));
             j++;
@@ -164,36 +165,46 @@ public class reconocer {
         
     }
     
-    public void Pprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorPPrime){
+    public void Pprimeros(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<String> vectorPPrime,ArrayList<String> vectorNTPrime){
         int i=0;
         while (i<vectorProdu.size()) { 
             int j=4;
             if("|".equals(Character.toString(vectorProdu.get(i).charAt(j)))){
+                vectorPPrime.add("");
                 i++;
                 continue;
             }
+            String s="";
             while (j<=vectorProdu.get(i).length()){  
                 if (j==vectorProdu.get(i).length()) {
+                    vectorPPrime.add(s);
                     j++;
                     continue;
                 }
                 if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) { 
-                    if(Character.toString(vectorProdu.get(i).charAt(0)).equals(Character.toString(vectorProdu.get(i).charAt(j)))){
-                        j++;
-                        continue;
-                    }
+                    s=buscaEnPrimeros(Character.toString(vectorProdu.get(i).charAt(j)), vectorNTPrime);
                     if(NTesAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
                         
                         j++;
                         continue;
                     }
+                    vectorPPrime.add(s);
                     break;
                 }else{
-                    vectorPPrime.add(Character.toString(vectorProdu.get(i).charAt(j)));
+                    vectorPPrime.add(s+Character.toString(vectorProdu.get(i).charAt(j)));
                     break;
                 }
             }
             i++;
+        }
+        //Borro T repetidos
+        int j=0;
+        while(j<vectorPPrime.size()){
+            replaceArray(j, vectorPPrime, eliminaRepetido(vectorPPrime.get(j)));
+            replaceArray(j, vectorPPrime, vectorPPrime.get(j).replaceAll("(.)\\1", "$1"));
+            String n="aba";
+            n=n.replaceAll("(.)\\1", "$1");
+            j++;
         }
         
     }
@@ -228,7 +239,6 @@ public class reconocer {
                     }
                     
                     if(NTesAnulable(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
-                        System.out.println("se van a agregar los primeros de "+vectorProdu.get(i).charAt(j));
                         s=s+primerosNT(Character.toString(vectorProdu.get(i).charAt(j)), vectorProdu, vectorAnu);
                         j++;
                         continue;
@@ -267,6 +277,16 @@ public class reconocer {
         return false;
     }
     
+    public String buscaEnPrimeros(String NT, ArrayList<String> vectorNTPrime){
+        int k=0;
+                while(k<vectorNTPrime.size()){
+                    if(NT.equals(Character.toString(vectorNTPrime.get(k).charAt(0)))){
+                        return vectorNTPrime.get(k).substring(1);
+                    }
+                    k++;
+                }return "";
+    }
+    
     public void concatenaArray(int posicion, ArrayList<String> vector,String t){
         String s= vector.get(posicion);
         vector.remove(posicion);
@@ -277,5 +297,22 @@ public class reconocer {
         String s= vector.get(posicion);
         vector.remove(posicion);
         vector.add(posicion, t);
+    }
+    
+    public String eliminaRepetido(String s){
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i+1; j < s.length(); j++) {
+                
+                if(s.charAt(i)==s.charAt(j)){
+                    if (j==s.length()-1) {
+                        s=s.substring(0,j);
+                        continue;
+                    }
+                    s=s.substring(0,j-1)+s.substring(j+1);
+                }
+                //if(j==)
+            }
+        }
+        return s;
     }
 }
