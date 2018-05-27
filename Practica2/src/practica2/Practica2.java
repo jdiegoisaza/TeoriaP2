@@ -23,22 +23,25 @@ public class Practica2 {
         ArrayList<String> vectorNT = new ArrayList<>();
         ArrayList<String> vectorProdu = new ArrayList<>();
         ArrayList<String> vectorAnu = new ArrayList<>();
+        ArrayList<Integer> vectorPAnu = new ArrayList<>();
         String vector[]= new String[10];
         
-        String s="1. A = aC\n" +
-                 "2. A = bBc\n" +
-                 "3. B = aA\n" +
-                 "4. B = bB\n" +
-                 "5. C = aCa\n" +
-                 "6. C = bBcc\n" +
-                 "8. D = bBcc\n" +
-                 "7. C = |";
+        String s="A = BC\n" +
+                 "A = bBc\n" +
+                 "B = aA\n" +
+                 "B = B\n" +
+                 "C = aCa\n" +
+                 "C = bBcc\n" +
+                 "D = bBcc\n" +
+                 "C = |";
         reconocer reco = new reconocer();
         reco.obtenerNT(s,vectorNT,vectorProdu);
-        reco.anulables (vectorNT,vectorProdu,vectorAnu);
+        reco.anulables2 (vectorNT,vectorProdu,vectorAnu);
+        reco.pAnulables(vectorProdu, vectorAnu, vectorPAnu);
         mostar2(vectorNT);
         mostar2(vectorProdu);
         mostar2(vectorAnu);
+        mostar2(vectorPAnu);
     }
 
     

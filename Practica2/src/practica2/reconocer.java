@@ -79,26 +79,38 @@ public class reconocer {
                 vectorAnu.add(Character.toString(vectorProdu.get(i).charAt(0)));
             }            
             i++;
-        }
+        }int m=0;
+        while(m<vectorProdu.size()){
         i=0;
-        int j=4;
         while (i<vectorProdu.size()) { 
-            while (j<vectorProdu.get(i).length()){            
-            if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) { 
-                int k=0;
-                //while(k<vectorAnu.size()){
-                    
-                //}
-            }else{
-                break;
-            }
-            j++;
-            }
+            int j=4;
+            while (j<=vectorProdu.get(i).length()){  
+                if (j==vectorProdu.get(i).length()) {
+                    vectorAnu.add(Character.toString(vectorProdu.get(i).charAt(0)));
+                    j++;
+                    break;
+                }
+                if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) { 
+                    if (Character.toString(vectorProdu.get(i).charAt(0)).equals(Character.toString(vectorProdu.get(i).charAt(j)))) {
+                        j++;
+                        continue;
+                    }
+                    if(buscaVector(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
+                        j++;
+                        continue;
+                    }
+                    break;
+                }else{
+                    break;
+                }
+             }
             if(j==vectorProdu.get(i).length()){
                 vectorAnu.add(Character.toString(vectorProdu.get(i).charAt(0)));
             }
             i++;
-        }        
+        }
+        m++;
+        }
         
         
         //Vamos a eliminar NT repetidos
@@ -107,5 +119,45 @@ public class reconocer {
         vectorAnu.clear();
         vectorAnu.addAll(hs);
 
+    }
+    
+    public void pAnulables(ArrayList<String> vectorProdu,ArrayList<String> vectorAnu,ArrayList<Integer> vectorPAnu){
+        int i=0;
+        while (i<vectorProdu.size()) { 
+            int j=4;
+            if("|".equals(Character.toString(vectorProdu.get(i).charAt(j)))){
+                vectorPAnu.add(i);
+                i++;
+                continue;
+            }
+            while (j<=vectorProdu.get(i).length()){  
+                if (j==vectorProdu.get(i).length()) {
+                    vectorPAnu.add(i);
+                    j++;
+                    break;
+                }
+                if (Character.isUpperCase(vectorProdu.get(i).charAt(j))) { 
+                    if(buscaVector(Character.toString(vectorProdu.get(i).charAt(j)), vectorAnu)){
+                        j++;
+                        continue;
+                    }
+                    break;
+                }else{
+                    break;
+                }
+            }
+            i++;
+        }
+    }
+    
+    public boolean buscaVector(String s, ArrayList<String> vector){
+        int k=0;
+                while(k<vector.size()){
+                    if(s.equals(vector.get(k))){
+                        return true;
+                    }
+                    k++;
+                }
+        return false;
     }
 }
